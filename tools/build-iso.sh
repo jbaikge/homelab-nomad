@@ -26,7 +26,6 @@ done
 ISO_CONFIG_FILE="${WORK_DIR}/iso.nix"
 sed "${SED_ARGS[@]}" "$ISO_TEMPLATE_FILE" > "$ISO_CONFIG_FILE"
 
-NIX_PATH="nixos-config=${ISO_CONFIG_FILE}:nixpkgs=channel:nixos-25.05"
-ISO_PATH=$(nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage)
+ISO_PATH=$(NIX_PATH="nixos-config=${ISO_CONFIG_FILE}:nixpkgs=channel:nixos-25.05" nix-build '<nixpkgs/nixos>' --attr config.system.build.isoImage)
 
 realpath $ISO_PATH/iso/*.iso
