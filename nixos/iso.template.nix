@@ -4,6 +4,21 @@
   imports = [
     <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
     <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
+    # <nixpkgs/nixos/modules/installer/netboot/netboot.nix>
+  ];
+
+  # This is required to get past the screen that says the ISO isn't UEFI
+  # compatible
+  isoImage.forceTextMode = true;
+
+  # These seem to be required to add? I ended up trying in a USB2 port and
+  # suddenly things started working?
+  boot.initrd.kernelModules = [
+    "ahci"
+    "uas"
+    "ehci_pci"
+    "xhci_pci"
+    "usb_storage"
   ];
 
   i18n.supportedLocales = [
