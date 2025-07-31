@@ -1,2 +1,5 @@
 # SOPS decrypted files
 *.decrypted.yml
+
+# Nix compilation result
+result
