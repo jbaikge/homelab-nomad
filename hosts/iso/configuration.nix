@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    ./disko.nix
   ];
 
   nixpkgs = {
@@ -22,6 +23,14 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+      };
+      systemd-boot = {
+        enable = true;
+      };
+    };
   };
 
   networking = {
@@ -41,8 +50,6 @@
   };
 
   services.openssh.enable = true;
-
-  security.sudo.wheelNeedsPassword = false;
 
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwt0GaEQ9qFE/P7LRLEKqDtMF9zbSFtgO3wLq4XZxyM"
