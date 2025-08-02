@@ -12,6 +12,20 @@
     };
   };
 
+  networking = {
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        4646 # Nomad HTTP API
+        4647 # Nomad RPC
+        4648 # Nomad Serf/Gossip
+      ];
+      allowedUDPPorts = [
+        4648 # Nomad Serf/Gossip
+      ];
+    };
+  };
+
   users.users = {
     root = {
       openssh.authorizedKeys.keys = [
