@@ -6,6 +6,7 @@ pkgs.mkShell {
   packages = [
     pkgs.age
     pkgs.nixfmt-rfc-style
+    pkgs.nixos-anywhere
     pkgs.opentofu
     pkgs.sops
     pkgs.yq
