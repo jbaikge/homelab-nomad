@@ -5,6 +5,7 @@ in
 pkgs.mkShell {
   packages = [
     pkgs.age
+    pkgs.nixfmt-rfc-style
     pkgs.opentofu
     pkgs.sops
     pkgs.yq
