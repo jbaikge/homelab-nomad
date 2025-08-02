@@ -21,7 +21,7 @@
   };
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest ++ [ "xhci_pci_renesas" ];
     loader = {
       efi = {
         canTouchEfiVariables = true;
