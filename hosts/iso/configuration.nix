@@ -21,7 +21,16 @@
   };
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest ++ [ "xhci_pci_renesas" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    initrd.availableKernelModules = [
+      "ehci_pci"
+      "ahci"
+      "xhci_pci_renesas"
+      "nvme"
+      "uas"
+      "usbhid"
+      "sd_mod"
+    ];
     loader = {
       efi = {
         canTouchEfiVariables = true;
