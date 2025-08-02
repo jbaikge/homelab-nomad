@@ -3,3 +3,7 @@
 
 # Nix compilation result
 result
+
+# Terraform artifacts
+.terraform
+terraform.tfstate
