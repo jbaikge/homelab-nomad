@@ -9,7 +9,7 @@
       canTouchEfiVariables = true;
     };
     systemd-boot = {
-      enabled = true;
+      enable = true;
     };
   };
 
