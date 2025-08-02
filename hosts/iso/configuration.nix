@@ -5,7 +5,6 @@
 }:
 {
   imports = [
-    ./disko.nix
   ];
 
   nixpkgs = {
@@ -44,14 +43,11 @@
       viAlias = true;
       vimAlias = true;
     };
-    zsh = {
-      enable = true;
-    };
   };
 
   services.openssh.enable = true;
 
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwt0GaEQ9qFE/P7LRLEKqDtMF9zbSFtgO3wLq4XZxyM"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJKcUwPKD4XVY/CD36DrBhlQkUq3AzKaNpfHb0S5ZqQB"
   ];
 }
