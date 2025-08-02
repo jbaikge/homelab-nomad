@@ -67,10 +67,21 @@
 
       # Nomad configuration, as Nix attribute set.
       settings = {
-        client.enabled = true;
+        client = {
+          enabled = true;
+        };
         server = {
           enabled = true;
+          # TODO Change to 4 later
           bootstrap_expect = 1;
+          # TODO set to "other three servers" in each server's configuration
+          # server_join = {
+          #   retry_join = [
+          #   ];
+          # };
+        };
+        ui = {
+          enabled = true;
         };
         plugin = [
           {
