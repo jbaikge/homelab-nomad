@@ -11,8 +11,9 @@ job "demo-webapp" {
     }
 
     service {
-      name = "demo-webapp"
-      port = "http"
+      name     = "demo-webapp"
+      provider = "nomad"
+      port     = "http"
 
       tags = [
         "traefik.enable=true",

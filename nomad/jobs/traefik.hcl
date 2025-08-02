@@ -17,7 +17,8 @@ job "traefik" {
     }
 
     service {
-      name = "traefik"
+      name     = "traefik"
+      provider = "nomad"
 
       check {
         name     = "alive"
