@@ -12,14 +12,22 @@
     };
   };
 
-  users.users.jake = {
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwt0GaEQ9qFE/P7LRLEKqDtMF9zbSFtgO3wLq4XZxyM"
-    ];
+  users.users = {
+    root = {
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJKcUwPKD4XVY/CD36DrBhlQkUq3AzKaNpfHb0S5ZqQB"
+      ];
+    };
 
-    isNormalUser = true;
-    description = "Jacob Tews";
-    extraGroups = [ "wheel" ];
+    jake = {
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwt0GaEQ9qFE/P7LRLEKqDtMF9zbSFtgO3wLq4XZxyM"
+      ];
+
+      isNormalUser = true;
+      description = "Jacob Tews";
+      extraGroups = [ "wheel" ];
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
