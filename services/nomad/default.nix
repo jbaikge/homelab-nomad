@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   clusterConfig,
   ...
@@ -48,12 +49,11 @@
         enabled = true;
 
         # TODO Change to 4 later
-        bootstrap_expect = 1;
+        bootstrap_expect = lib.mkDefault 1;
         # TODO set to "other three servers" in each server's configuration
-        # server_join = {
-        #   retry_join = [
-        #   ];
-        # };
+        server_join = {
+          retry_join = lib.mkDefault [ ];
+        };
 
         # Generated with: nomad operator gossip keyring generate
         encrypt = "hzgTmKVMb6Q9FTRgUe+23ftG8GavygixRyz3P/DLYc4=";
