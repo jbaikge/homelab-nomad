@@ -17,7 +17,7 @@ job "demo-webapp" {
 
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.http.rule=Path(`/demo`)",
+        # "traefik.http.routers.http.rule=Path(`/demo`)",
       ]
 
       check {
