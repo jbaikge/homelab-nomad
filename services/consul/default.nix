@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
 {
   services.consul = {
     enable = true;
@@ -17,7 +21,7 @@
       bootstrap_expect = 1;
 
       datacenter = "dc1";
-      node_name = "unknown";
+      node_name = lib.mkDefault "unknown";
 
       encrypt = "pJgXpTzlDm3zC9GFoM5jtP9/TYsY1EikpGtPGJP6sOU=";
 
