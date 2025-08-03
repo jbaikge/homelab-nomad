@@ -62,7 +62,6 @@
     openssh = {
       enable = true;
     };
-
   };
 
   virtualisation = {
