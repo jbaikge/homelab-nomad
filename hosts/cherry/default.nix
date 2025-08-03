@@ -3,6 +3,8 @@
     ../common
     ./disko.nix
     ./hardware-configuration.nix
+    # ../../services/consul
+    ../../services/nomad
   ];
 
   networking.hostName = "cherry";
