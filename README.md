@@ -52,11 +52,8 @@ Once the command exits, pull the USB drive from the machine and you should be ab
 
 ## Updates
 
-Once the system is up, clone this repository and use it to update the nodes.
-
 ```shell
-$ git clone https://github.com/jbaikge/homelab-nomad
-$ sudo nixos-rebuild switch --flake ".#${HOSTNAME}"
+$ for HOST in cherry hickory maple; do nixos-rebuild switch --flake ".#${HOST}" --target-host "root@${HOST}.hardwood.cloud"; done
 ```
 
 ## References
