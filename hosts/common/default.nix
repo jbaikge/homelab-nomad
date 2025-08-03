@@ -18,6 +18,8 @@
       allowedTCPPorts = [
         80 # HTTP
         443 # HTTPS
+        8080 # Treafik HTTP (test)
+        8081 # Traefik API (test)
       ];
       allowedUDPPorts = [
         53 # DNS
