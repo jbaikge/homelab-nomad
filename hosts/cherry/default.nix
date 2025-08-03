@@ -1,8 +1,8 @@
-{ pkgs, ... }:
 {
   imports = [
-    ../common/hardwood-cluster.nix
+    ../common
     ./disko.nix
+    ./hardware-configuration.nix
   ];
 
   networking.hostName = "cherry";
