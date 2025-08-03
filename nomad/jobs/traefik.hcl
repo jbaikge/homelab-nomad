@@ -31,9 +31,9 @@ job "traefik" {
       name = "traefik"
       port = "https"
       tags = [
-        "traefik.enable=true",
-        "traefik.http.routers.api.rule=Host(`api.hardwood.cloud`)",
-        "traefik.http.routers.api.service=api@internal",
+        # "traefik.enable=true",
+        # "traefik.http.routers.api.rule=Host(`api.hardwood.cloud`)",
+        # "traefik.http.routers.api.service=api@internal",
       ]
 
       check {
@@ -58,9 +58,13 @@ job "traefik" {
           "--api=true",
           "--api.dashboard=true",
           "--api.insecure=true",
-          "--entryPoints.http.address=:80",
-          "--entryPoints.https.address=:443",
-          "--entrypoints.http.http.redirections.entryPoint.to=https",
+          "--entryPoints.web.address=:80",
+          "--entrypoints.web.http.redirections.entryPoint.permanent=true",
+          "--entrypoints.web.http.redirections.entryPoint.scheme=https",
+          "--entrypoints.web.http.redirections.entryPoint.to=websecure",
+          "--entryPoints.websecure.address=:443",
+          "--entryPoints.websecure.http.tls=true",
+          "--log.level=INFO",
           "--metrics=true",
           "--metrics.prometheus.entryPoint=traefik",
           "--metrics.prometheus.manualrouting=true",
@@ -68,7 +72,7 @@ job "traefik" {
           "--ping=true",
           "--ping.entryPoint=traefik",
           "--providers.consulcatalog=true",
-          "--providers.consulcatalog.defaultrule=Host(`{{ .Name }}.hardwood.cloud`)",
+          "--providers.consulcatalog.defaultRule=Host(`{{ .Name }}.hardwood.cloud`)",
           "--providers.consulcatalog.endpoint.address=http://172.17.0.1:8500",
           "--providers.consulcatalog.exposedByDefault=false",
           "--providers.consulcatalog.prefix=traefik",
