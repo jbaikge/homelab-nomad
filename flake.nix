@@ -32,6 +32,22 @@
           ];
           specialArgs = { inherit clusterConfig; };
         };
+        hickory = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/hickory
+          ];
+          specialArgs = { inherit clusterConfig; };
+        };
+        maple = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/maple
+          ];
+          specialArgs = { inherit clusterConfig; };
+        };
       };
     };
 }
