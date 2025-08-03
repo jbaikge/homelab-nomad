@@ -16,8 +16,9 @@
 
       client_addr = "0.0.0.0";
       advertise_addr = "{{ GetPrivateInterfaces | include \"network\" \"10.100.6.0/24\" | attr \"address\" }}";
-      # TODO bump this to number of nodes
-      bootstrap_expect = 1;
+
+      bootstrap_expect = lib.mkDefault 1;
+      retry_join = lib.mkDefault [ ];
 
       datacenter = "dc1";
       node_name = lib.mkDefault "unknown";
