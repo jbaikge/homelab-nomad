@@ -11,13 +11,13 @@ job "demo-webapp" {
     }
 
     service {
-      name     = "demo-webapp"
-      provider = "nomad"
-      port     = "http"
+      name = "demo-webapp"
+      # provider = "nomad"
+      port = "http"
 
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.http.rule=Path(`/myapp`)",
+        "traefik.http.routers.http.rule=Path(`/demo`)",
       ]
 
       check {

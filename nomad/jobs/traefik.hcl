@@ -17,8 +17,8 @@ job "traefik" {
     }
 
     service {
-      name     = "traefik"
-      provider = "nomad"
+      name = "traefik"
+      # provider = "nomad"
 
       check {
         name     = "alive"
@@ -54,13 +54,13 @@ job "traefik" {
               dashboard = true
               insecure = true
 
-            # [providers.consulCatalog]
-            #   prefix = "traefik"
-            #   exposedByDefault = false
+            [providers.consulCatalog]
+              prefix = "traefik"
+              exposedByDefault = false
 
-            #   [providers.consulCatalog.endpoint]
-            #     address = "127.0.0.1:8500"
-            #     scheme = "http"
+              [providers.consulCatalog.endpoint]
+                address = "127.0.0.1:8500"
+                scheme = "http"
           EOF
       }
 
