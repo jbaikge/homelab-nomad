@@ -16,12 +16,11 @@
     firewall = {
       enable = true;
       allowedTCPPorts = [
-        4646 # Nomad HTTP API
-        4647 # Nomad RPC
-        4648 # Nomad Serf/Gossip
+        80 # HTTP
+        443 # HTTPS
       ];
       allowedUDPPorts = [
-        4648 # Nomad Serf/Gossip
+        53 # DNS
       ];
     };
   };
@@ -47,9 +46,7 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = [
     pkgs.curl
-    pkgs.damon # TUI for Nomad.
     pkgs.git
-    pkgs.nomad-driver-podman # Podman driver plugin.
   ];
 
   programs = {
@@ -66,46 +63,6 @@
       enable = true;
     };
 
-    nomad = {
-      enable = true;
-      # package = pkgs.nomad_1_6;
-
-      # Add extra plugins to Nomads plugin directory.
-      extraSettingsPlugins = [ pkgs.nomad-driver-podman ];
-
-      # Add Docker driver.
-      enableDocker = true;
-
-      # Nomad as Root to access Docker/Podman sockets.
-      dropPrivileges = false;
-
-      # Nomad configuration, as Nix attribute set.
-      settings = {
-        client = {
-          enabled = true;
-        };
-        server = {
-          enabled = true;
-          # TODO Change to 4 later
-          bootstrap_expect = 1;
-          # TODO set to "other three servers" in each server's configuration
-          # server_join = {
-          #   retry_join = [
-          #   ];
-          # };
-        };
-        ui = {
-          enabled = true;
-        };
-        plugin = [
-          {
-            nomad-driver-podman = {
-              config = { };
-            };
-          }
-        ];
-      };
-    };
   };
 
   virtualisation = {
