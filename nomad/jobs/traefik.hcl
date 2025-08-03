@@ -1,29 +1,46 @@
 job "traefik" {
-  type        = "service"
+  type        = "system"
   region      = "global"
   datacenters = ["*"]
 
+  update {
+    max_parallel = 1
+    stagger      = "1m"
+    auto_revert  = true
+  }
+
   group "traefik" {
-    count = 1
+    # count = 1
 
     network {
       port "http" {
-        static = 8080
+        static = 80
       }
 
-      port "api" {
-        static = 8081
+      port "https" {
+        static = 443
+      }
+
+      port "traefik" {
+        static = 8080
       }
     }
 
     service {
-      name = "traefik"
       # provider = "nomad"
+      name = "traefik"
+      port = "https"
+      tags = [
+        "traefik.enable=true",
+        "traefik.http.routers.api.rule=Host(`api.hardwood.cloud`)",
+        "traefik.http.routers.api.service=api@internal",
+      ]
 
       check {
         name     = "alive"
-        type     = "tcp"
-        port     = "http"
+        type     = "http"
+        port     = "traefik"
+        path     = "/ping"
         interval = "10s"
         timeout  = "2s"
       }
@@ -33,35 +50,35 @@ job "traefik" {
       driver = "docker"
 
       config {
-        image        = "traefik:v2.2"
-        network_mode = "host"
+        image = "traefik:3"
+        # network_mode = "host"
 
-        volumes = [
-          "local/traefik.toml:/etc/traefik/traefik.toml",
+        args = [
+          "--accesslog=true",
+          "--api=true",
+          "--api.dashboard=true",
+          "--api.insecure=true",
+          "--entryPoints.http.address=:80",
+          "--entryPoints.https.address=:443",
+          "--entrypoints.http.http.redirections.entryPoint.to=https",
+          "--metrics=true",
+          "--metrics.prometheus.entryPoint=traefik",
+          "--metrics.prometheus.manualrouting=true",
+          "--metrics.prometheus=true",
+          "--ping=true",
+          "--ping.entryPoint=traefik",
+          "--providers.consulcatalog=true",
+          "--providers.consulcatalog.defaultrule=Host(`{{ .Name }}.hardwood.cloud`)",
+          "--providers.consulcatalog.endpoint.address=http://172.17.0.1:8500",
+          "--providers.consulcatalog.exposedByDefault=false",
+          "--providers.consulcatalog.prefix=traefik",
         ]
-      }
 
-      template {
-        destination = "local/traefik.toml"
-        data        = <<-EOF
-            [entryPoints]
-              [entryPoints.http]
-                address = ":8080"
-              [entryPoints.traefik]
-                address = ":8081"
-
-            [api]
-              dashboard = true
-              insecure = true
-
-            [providers.consulCatalog]
-              prefix = "traefik"
-              exposedByDefault = false
-
-              [providers.consulCatalog.endpoint]
-                address = "127.0.0.1:8500"
-                scheme = "http"
-          EOF
+        ports = [
+          "http",
+          "https",
+          "traefik",
+        ]
       }
 
       resources {
