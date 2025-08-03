@@ -59,3 +59,8 @@ $ git clone https://github.com/jbaikge/homelab-nomad
 $ sudo nixos-rebuild switch --flake ".#${HOSTNAME}"
 ```
 
+## References
+
+- [Set Up Load Balancing with Traefik](https://developer.hashicorp.com/nomad/tutorials/load-balancing/load-balancing-traefik)
+- [stut/nixos-nomad](https://github.com/stut/nixos-nomad)
+- [Using Traefik on Nomad](https://atodorov.me/2021/03/27/using-traefik-on-nomad/)
