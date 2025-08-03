@@ -15,8 +15,7 @@
       ui_config.enabled = true;
 
       client_addr = "0.0.0.0";
-      # TODO figure out advertise addr
-      # advertise_addr = "";
+      advertise_addr = "{{ GetPrivateInterfaces | include \"network\" \"10.100.6.0/24\" | attr \"address\" }}";
       # TODO bump this to number of nodes
       bootstrap_expect = 1;
 
