@@ -6,7 +6,7 @@ job "hello-world" {
   }
 
   group "servers" {
-    count = 1
+    count = 3
 
     network {
       port "www" {
@@ -15,8 +15,12 @@ job "hello-world" {
     }
 
     service {
-      provider = "nomad"
-      port     = "www"
+      # provider = "nomad"
+      port = "www"
+
+      tags = [
+        "traefik.enable=true",
+      ]
     }
 
     task "web" {
