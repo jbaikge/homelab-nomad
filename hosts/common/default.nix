@@ -16,7 +16,7 @@
 
   networking = {
     firewall = {
-      enable = true;
+      enable = false;
       allowedTCPPorts = [
         80 # HTTP
         443 # HTTPS
