@@ -12,6 +12,8 @@
     };
   };
 
+  time.timeZone = "America/New_York";
+
   networking = {
     firewall = {
       enable = true;
