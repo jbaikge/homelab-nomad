@@ -1,9 +1,9 @@
 driver: freenas-iscsi
 instance_id: null
 httpConnection:
-  protocol: http
+  protocol: https
   host: ash.hardwood.cloud
-  port: 80
+  port: 443
   allowInsecure: true
   apiKey: ENC[AES256_GCM,data:Uq3rxwIv97cDrolJ5Kg0qXlwXlt6gdiU393tdtgK5XzhEdvZ4wjoy6oSETTb8o8BUFN1cveatVDNslKq3seleliC,iv:4EXBz8tCIk8BYjsww8Wzdxxhw4LTTLwdAfc2dBEhl8g=,tag:OMXLFUybJbsjJay+gsTGig==,type:str]
 sshConnection:
@@ -16,16 +16,16 @@ zfs:
   zvolCompression: ""
   zvolDedup: ""
   zvolEnableReservation: false
-  zvolBlockSize: 16k
+  zvolBlockSize: 4k
 iscsi:
   targetPortals:
-    - ash.hardwood.cloud:12345
+    - ash.hardwood.cloud:3260
   interface: ""
   namePrefix: csi-
   nameSuffix: ""
   targetGroups:
-    - targetGroupPortalGroup: 0
-      targetGroupInitiatorGroup: 0
+    - targetGroupPortalGroup: 1
+      targetGroupInitiatorGroup: 1
       targetGroupAuthType: None
       targetGrouipAuthGroup: ""
   extentInsecureTpc: true
@@ -45,7 +45,7 @@ sops:
         NFUwU0dydG9KN2RmU1NZeXArTlIvVXMKVEvGskhgBIfC37FF5Oaf3LVcXdIHIzwl
         g44Oh3hTa1Xmp1DthpX3zO+f85jlUHzkDNDkskep2JbniJNWhUGtnw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-08-07T10:36:36Z"
-  mac: ENC[AES256_GCM,data:1rdXtwJuVRDyTtET3nV1o+pNHKGqMhH1lvDevYbsryZu+Sj6+qAzEfCkMN1vL6TGZsRAxpzprbQJ9SD3y10bqgRlQDO8ExNzvo+Zxjn0wNSc5WhPJxeMC1RbohIasi3KApOetNAk/5KE8+bm9MKhiKftKXPV9qO3ZNEOv30E3Yo=,iv:rjHSWMb1pTfcTBxwFHXQ0B13LvSrE9K6lITrCpasZ3c=,tag:RwUOuMeyh6MIVK6Hg9ZNkw==,type:str]
+  lastmodified: "2025-08-07T11:03:11Z"
+  mac: ENC[AES256_GCM,data:mQX6qs/dH1UOgTX4OCLKsJk/h3YKsZTqC/pXddTsK9oZ7zvW5PoDrxP/ZJhm4qPtecIUCusGLr1a+qSGfOL7MhEy1NXpOOZPBAlKhdTOWq2+kTbdTLBIBFIdcK5y+6xMuaTlsqq32wDj0WNM+Kn0KclQpDpd0tq27uX3UfMQEBo=,iv:PVvzty1x19puu3QGja6o/kMg4hGM7X7bmEev27FGaF0=,tag:hInCHoogafFTtv9ul63iRw==,type:str]
   encrypted_suffix: Key
   version: 3.10.2
