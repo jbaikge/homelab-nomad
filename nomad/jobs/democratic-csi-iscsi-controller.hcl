@@ -15,7 +15,7 @@ job "democratic-csi-iscsi-controller" {
           "--driver-config-file=$${NOMAD_TASK_DIR}/driver-config.yml",
           "--log-level=debug",
           "--csi-mode=controller",
-          "--server-socker=/csi-data/csi.sock",
+          "--server-socket=/csi-data/csi.sock",
         ]
       }
 
