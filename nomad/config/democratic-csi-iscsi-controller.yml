@@ -1,0 +1,51 @@
+driver: freenas-iscsi
+instance_id: null
+httpConnection:
+  protocol: http
+  host: ash.hardwood.cloud
+  port: 80
+  allowInsecure: true
+  apiKey: ENC[AES256_GCM,data:Uq3rxwIv97cDrolJ5Kg0qXlwXlt6gdiU393tdtgK5XzhEdvZ4wjoy6oSETTb8o8BUFN1cveatVDNslKq3seleliC,iv:4EXBz8tCIk8BYjsww8Wzdxxhw4LTTLwdAfc2dBEhl8g=,tag:OMXLFUybJbsjJay+gsTGig==,type:str]
+sshConnection:
+  host: ash.hardwood.cloud
+  username: nomad
+  privateKey: ENC[AES256_GCM,data:ejlqVn8j89/TmXoKN3WnAjQcnVjF5M6xMcpZisAvHawAwZGdyXYNs/s/tIeOIsY2COIDyUvdNrD8oV0deofa9Kxd0RStryb6aiXX2mj4+UxLQ7uzw5/suNhDgmh7wOEoOkFedxshOwYrK75QCUEkByIgqBQZdy5BCV65p3/yUpI0KxELvUA1AS25LOlKHJ4qKF8n2jC4iuNs2gwXZkcuLLZZJ7IQvVLcdR3e/eXnIAawv32dBbcXrxKjSmZtgb8wGbShGobg93tyK4qaBEcZkIps1t9QXZXjgwy/L4SHb9uU4rrcublkVlPHWb9RABUI20bEXbcOOzQzvm4Tc6dIGFniUY5ryrseB54/ayskMX1XKzb0r5jvw8orbzOWbdg6vFfAf+Wq2v1At4jEb/QRsOqBMGCRDJx/GrJMXjouq3kB4thfsJlVRhl9K0issPpAMir4bClnYtJ195LpiQFXsJwdg2sSNvngWDqzgfexajZMqLp7cUgu/QcGaFO9CRXWRHMqxQUwuKUlQhlXROUw,iv:0c8iEkdwqrrhArWxOn0K+s62aLOxBhQ2g41B/0meoqY=,tag:wD7/5RmftLh443855FKO1A==,type:str]
+zfs:
+  datasetParentName: tank/nomad/vols
+  detachedSnapshotDatasetParentName: tank/nomad/snaps
+  zvolCompression: ""
+  zvolDedup: ""
+  zvolEnableReservation: false
+  zvolBlockSize: 16k
+iscsi:
+  targetPortals:
+    - ash.hardwood.cloud:12345
+  interface: ""
+  namePrefix: csi-
+  nameSuffix: ""
+  targetGroups:
+    - targetGroupPortalGroup: 0
+      targetGroupInitiatorGroup: 0
+      targetGroupAuthType: None
+      targetGrouipAuthGroup: ""
+  extentInsecureTpc: true
+  extentXenCompat: false
+  extentDisablePhysicalBlocksize: true
+  extentBlockSize: 512
+  extentRpm: SSD
+  extentAvailThreshold: 0
+sops:
+  age:
+    - recipient: age1cn8jcfpmkyr2f6q3xxe5k8uwvk0apk0ma9psv3kxdvr8fuh45e6smry3ks
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBUMk5CeFJSQ3k3RHdKWU84
+        dlBWRlpKLy80cFMycFg1dElkdkNlSTllWFEwCjdrYUtTMFREV1JSSnV2TzJ6d3h6
+        V3Rqa3V5bkhIYUR4TFIreE9YSjdrcXcKLS0tIFNmaG9UcXEzR085ZUg1dmN5dFZM
+        NFUwU0dydG9KN2RmU1NZeXArTlIvVXMKVEvGskhgBIfC37FF5Oaf3LVcXdIHIzwl
+        g44Oh3hTa1Xmp1DthpX3zO+f85jlUHzkDNDkskep2JbniJNWhUGtnw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-08-07T10:36:36Z"
+  mac: ENC[AES256_GCM,data:1rdXtwJuVRDyTtET3nV1o+pNHKGqMhH1lvDevYbsryZu+Sj6+qAzEfCkMN1vL6TGZsRAxpzprbQJ9SD3y10bqgRlQDO8ExNzvo+Zxjn0wNSc5WhPJxeMC1RbohIasi3KApOetNAk/5KE8+bm9MKhiKftKXPV9qO3ZNEOv30E3Yo=,iv:rjHSWMb1pTfcTBxwFHXQ0B13LvSrE9K6lITrCpasZ3c=,tag:RwUOuMeyh6MIVK6Hg9ZNkw==,type:str]
+  encrypted_suffix: Key
+  version: 3.10.2
