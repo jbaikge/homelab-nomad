@@ -12,22 +12,22 @@ sshConnection:
   privateKey: ENC[AES256_GCM,data:ejlqVn8j89/TmXoKN3WnAjQcnVjF5M6xMcpZisAvHawAwZGdyXYNs/s/tIeOIsY2COIDyUvdNrD8oV0deofa9Kxd0RStryb6aiXX2mj4+UxLQ7uzw5/suNhDgmh7wOEoOkFedxshOwYrK75QCUEkByIgqBQZdy5BCV65p3/yUpI0KxELvUA1AS25LOlKHJ4qKF8n2jC4iuNs2gwXZkcuLLZZJ7IQvVLcdR3e/eXnIAawv32dBbcXrxKjSmZtgb8wGbShGobg93tyK4qaBEcZkIps1t9QXZXjgwy/L4SHb9uU4rrcublkVlPHWb9RABUI20bEXbcOOzQzvm4Tc6dIGFniUY5ryrseB54/ayskMX1XKzb0r5jvw8orbzOWbdg6vFfAf+Wq2v1At4jEb/QRsOqBMGCRDJx/GrJMXjouq3kB4thfsJlVRhl9K0issPpAMir4bClnYtJ195LpiQFXsJwdg2sSNvngWDqzgfexajZMqLp7cUgu/QcGaFO9CRXWRHMqxQUwuKUlQhlXROUw,iv:0c8iEkdwqrrhArWxOn0K+s62aLOxBhQ2g41B/0meoqY=,tag:wD7/5RmftLh443855FKO1A==,type:str]
 zfs:
   datasetParentName: tank/nomad/vols
-  detachedSnapshotDatasetParentName: tank/nomad/snaps
-  zvolCompression: ""
-  zvolDedup: ""
+  detachedSnapshotsDatasetParentName: tank/nomad/snaps
+  zvolCompression: null
+  zvolDedup: null
   zvolEnableReservation: false
   zvolBlockSize: 4k
 iscsi:
   targetPortals:
     - ash.hardwood.cloud:3260
-  interface: ""
+  interface: null
   namePrefix: csi-
   nameSuffix: ""
   targetGroups:
     - targetGroupPortalGroup: 1
       targetGroupInitiatorGroup: 1
       targetGroupAuthType: None
-      targetGrouipAuthGroup: ""
+      targetGrouipAuthGroup: null
   extentInsecureTpc: true
   extentXenCompat: false
   extentDisablePhysicalBlocksize: true
@@ -45,7 +45,7 @@ sops:
         NFUwU0dydG9KN2RmU1NZeXArTlIvVXMKVEvGskhgBIfC37FF5Oaf3LVcXdIHIzwl
         g44Oh3hTa1Xmp1DthpX3zO+f85jlUHzkDNDkskep2JbniJNWhUGtnw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-08-07T11:03:11Z"
-  mac: ENC[AES256_GCM,data:mQX6qs/dH1UOgTX4OCLKsJk/h3YKsZTqC/pXddTsK9oZ7zvW5PoDrxP/ZJhm4qPtecIUCusGLr1a+qSGfOL7MhEy1NXpOOZPBAlKhdTOWq2+kTbdTLBIBFIdcK5y+6xMuaTlsqq32wDj0WNM+Kn0KclQpDpd0tq27uX3UfMQEBo=,iv:PVvzty1x19puu3QGja6o/kMg4hGM7X7bmEev27FGaF0=,tag:hInCHoogafFTtv9ul63iRw==,type:str]
+  lastmodified: "2025-08-07T18:35:13Z"
+  mac: ENC[AES256_GCM,data:nkrKLF4Xgnz7ZUv/yAsAWh+rpsVJjiCARWcpaRz29kXkDBzpHefr6FTLFUfdGpLXmBk+FOCWOHnnsKCuS3kqP444rd8JPTsNwS7lUyEWTx4Fom8Egn2gGH+S0TFeNnyASdcoeBalU/OK3ELawWVema4e//BnBbhwJB4FtoW8xAo=,iv:wfSOjK1irjNL/SFP7LHorvDBvTer+/4UYqMPQ25nRYU=,tag:xvGQbMvRKnLhaOCZOG5pqg==,type:str]
   encrypted_suffix: Key
   version: 3.10.2
