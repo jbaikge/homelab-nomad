@@ -7,15 +7,15 @@ job "democratic-csi-iscsi-controller" {
       driver = "docker"
 
       config {
-        image = "docker.io/democraticcsi/democratic-csi:latest"
+        image = "docker.io/democraticcsi/democratic-csi:next"
 
         args = [
-          "--csi-version=1.5.0",
+          "--csi-version=1.9.0",
           "--csi-name=org.democratic-csi.iscsi",
           "--driver-config-file=$${NOMAD_TASK_DIR}/driver-config.yml",
-          "--log-level=debug",
+          "--log-level=verbose",
           "--csi-mode=controller",
-          "--server-socket=/csi-data/csi.sock",
+          "--server-socket=/csi/csi.sock",
         ]
       }
 
