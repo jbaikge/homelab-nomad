@@ -28,12 +28,14 @@ job "democratic-csi-iscsi-controller" {
       template {
         destination = "$${NOMAD_TASK_DIR}/driver-config.yml"
 
-        data = driver_config
+        data = <<EOF
+${driver_config}
+EOF
       }
 
       resources {
-        cpu    = 30
-        memory = 50
+        cpu    = 100
+        memory = 128
       }
     }
   }
