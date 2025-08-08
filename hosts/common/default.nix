@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  ...
+}:
 {
   imports = [
   ];
@@ -63,6 +67,10 @@
   };
 
   services = {
+    openiscsi = {
+      enable = true;
+      name = "iqn.2025-08.net.tdude:${config.networking.hostName}";
+    };
     openssh = {
       enable = true;
     };
