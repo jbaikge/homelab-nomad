@@ -1,11 +1,3 @@
-locals {
-  csi_plugin = "org.democratic-csi.iscsi"
-}
-
-data "nomad_plugin" "csi" {
-  plugin_id        = local.csi_plugin
-  wait_for_healthy = true
-}
 
 resource "nomad_csi_volume" "test_volume" {
   plugin_id = local.csi_plugin

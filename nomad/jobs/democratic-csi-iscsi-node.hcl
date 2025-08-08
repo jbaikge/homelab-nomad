@@ -1,3 +1,7 @@
+variable "csi_plugin" {
+  type = string
+}
+
 variable "driver_config" {
   type = string
 }
@@ -16,7 +20,7 @@ job "democratic-csi-iscsi-node" {
 
         args = [
           "--csi-version=1.9.0",
-          "--csi-name=org.democratic-csi.iscsi",
+          "--csi-name=${var.csi_plugin}",
           "--driver-config-file=${NOMAD_TASK_DIR}/driver-config.yml",
           "--log-level=verbose",
           "--csi-mode=node",
@@ -25,15 +29,14 @@ job "democratic-csi-iscsi-node" {
       }
 
       csi_plugin {
-        id        = "org.democratic-csi.iscsi"
+        id        = var.csi_plugin
         type      = "node"
         mount_dir = "/csi"
       }
 
       template {
         destination = "${NOMAD_TASK_DIR}/driver-config.yml"
-
-        data = var.driver_config
+        data        = var.driver_config
       }
 
       resources {
