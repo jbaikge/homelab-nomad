@@ -1,4 +1,8 @@
 # https://github.com/democratic-csi/democratic-csi/blob/master/docs/Nomad/examples/democratic-csi-iscsi-controller.hcl
+variable "driver_config" {
+  type = string
+}
+
 job "democratic-csi-iscsi-controller" {
   datacenters = ["*"]
 
@@ -12,7 +16,7 @@ job "democratic-csi-iscsi-controller" {
         args = [
           "--csi-version=1.9.0",
           "--csi-name=org.democratic-csi.iscsi",
-          "--driver-config-file=$${NOMAD_TASK_DIR}/driver-config.yml",
+          "--driver-config-file=${NOMAD_TASK_DIR}/driver-config.yml",
           "--log-level=verbose",
           "--csi-mode=controller",
           "--server-socket=/csi/csi.sock",
@@ -26,11 +30,9 @@ job "democratic-csi-iscsi-controller" {
       }
 
       template {
-        destination = "$${NOMAD_TASK_DIR}/driver-config.yml"
+        destination = "${NOMAD_TASK_DIR}/driver-config.yml"
 
-        data = <<EOF
-${driver_config}
-EOF
+        data = var.driver_config
       }
 
       resources {

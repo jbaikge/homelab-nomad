@@ -1,3 +1,7 @@
+variable "driver_config" {
+  type = string
+}
+
 job "democratic-csi-iscsi-node" {
   datacenters = ["*"]
   type        = "system"
@@ -13,7 +17,7 @@ job "democratic-csi-iscsi-node" {
         args = [
           "--csi-version=1.9.0",
           "--csi-name=org.democratic-csi.iscsi",
-          "--driver-config-file=$${NOMAD_TASK_DIR}/driver-config.yml",
+          "--driver-config-file=${NOMAD_TASK_DIR}/driver-config.yml",
           "--log-level=verbose",
           "--csi-mode=node",
           "--server-socket=/csi/csi.sock",
@@ -27,11 +31,9 @@ job "democratic-csi-iscsi-node" {
       }
 
       template {
-        destination = "$${NOMAD_TASK_DIR}/driver-config.yml"
+        destination = "${NOMAD_TASK_DIR}/driver-config.yml"
 
-        data = <<EOF
-${driver_config}
-EOF
+        data = var.driver_config
       }
 
       resources {
