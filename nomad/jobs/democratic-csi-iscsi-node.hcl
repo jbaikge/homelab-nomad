@@ -1,3 +1,8 @@
+# https://github.com/democratic-csi/democratic-csi/issues/111
+#
+# important parts:
+# - ipc_mode = "host"
+# - explicitly mounting / to /host
 variable "csi_plugin" {
   type = string
 }
@@ -17,6 +22,8 @@ job "democratic-csi-iscsi-node" {
       config {
         image      = "democraticcsi/democratic-csi:next"
         privileged = true
+        # network_mode = "host"
+        ipc_mode = "host"
 
         args = [
           "--csi-version=1.9.0",
@@ -26,6 +33,13 @@ job "democratic-csi-iscsi-node" {
           "--csi-mode=node",
           "--server-socket=/csi/csi.sock",
         ]
+
+        mount {
+          type     = "bind"
+          target   = "/host"
+          source   = "/"
+          readonly = false
+        }
       }
 
       csi_plugin {
