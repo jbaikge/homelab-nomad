@@ -1,5 +1,5 @@
 creation_rules:
-  - path_regex: nomad/config/democratic-csi-iscsi-controller.yml
+  - path_regex: nomad/config/democratic-csi-iscsi.yml
     encrypted_suffix: Key
     key_groups:
       - age:
