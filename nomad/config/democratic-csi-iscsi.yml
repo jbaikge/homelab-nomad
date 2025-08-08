@@ -11,6 +11,13 @@ sshConnection:
   username: nomad
   privateKey: ENC[AES256_GCM,data:ejlqVn8j89/TmXoKN3WnAjQcnVjF5M6xMcpZisAvHawAwZGdyXYNs/s/tIeOIsY2COIDyUvdNrD8oV0deofa9Kxd0RStryb6aiXX2mj4+UxLQ7uzw5/suNhDgmh7wOEoOkFedxshOwYrK75QCUEkByIgqBQZdy5BCV65p3/yUpI0KxELvUA1AS25LOlKHJ4qKF8n2jC4iuNs2gwXZkcuLLZZJ7IQvVLcdR3e/eXnIAawv32dBbcXrxKjSmZtgb8wGbShGobg93tyK4qaBEcZkIps1t9QXZXjgwy/L4SHb9uU4rrcublkVlPHWb9RABUI20bEXbcOOzQzvm4Tc6dIGFniUY5ryrseB54/ayskMX1XKzb0r5jvw8orbzOWbdg6vFfAf+Wq2v1At4jEb/QRsOqBMGCRDJx/GrJMXjouq3kB4thfsJlVRhl9K0issPpAMir4bClnYtJ195LpiQFXsJwdg2sSNvngWDqzgfexajZMqLp7cUgu/QcGaFO9CRXWRHMqxQUwuKUlQhlXROUw,iv:0c8iEkdwqrrhArWxOn0K+s62aLOxBhQ2g41B/0meoqY=,tag:wD7/5RmftLh443855FKO1A==,type:str]
 zfs:
+  cli:
+    sudoEnabled: true
+    paths:
+      zfs: /usr/sbin/zfs
+      zpool: /usr/sbin/zpool
+      sudo: /usr/bin/sudo
+      chroot: /usr/sbin/chroot
   datasetParentName: tank/nomad/vols
   detachedSnapshotsDatasetParentName: tank/nomad/snaps
   zvolCompression: null
@@ -45,7 +52,7 @@ sops:
         NFUwU0dydG9KN2RmU1NZeXArTlIvVXMKVEvGskhgBIfC37FF5Oaf3LVcXdIHIzwl
         g44Oh3hTa1Xmp1DthpX3zO+f85jlUHzkDNDkskep2JbniJNWhUGtnw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-08-07T18:35:13Z"
-  mac: ENC[AES256_GCM,data:nkrKLF4Xgnz7ZUv/yAsAWh+rpsVJjiCARWcpaRz29kXkDBzpHefr6FTLFUfdGpLXmBk+FOCWOHnnsKCuS3kqP444rd8JPTsNwS7lUyEWTx4Fom8Egn2gGH+S0TFeNnyASdcoeBalU/OK3ELawWVema4e//BnBbhwJB4FtoW8xAo=,iv:wfSOjK1irjNL/SFP7LHorvDBvTer+/4UYqMPQ25nRYU=,tag:xvGQbMvRKnLhaOCZOG5pqg==,type:str]
+  lastmodified: "2025-08-08T10:44:56Z"
+  mac: ENC[AES256_GCM,data:I0ezD08hTi3kObQPH2Irh9jc4m9gKVBZxYDx0EWtFhZt/YpTm5H7wk/U7ySjufI8TCnB/Eqpnz1GqzWLbkqknTK20Vl3Ujt+7lNt7vgtSBsTHkYAYAFuI/aBITcTsj4+MCLoi+ykF6pcfyXdZCYkdxE8jXIjRa5MgKMxOoQl+dg=,iv:l0VfFDwJess3canpZ5Yyx9GQs2/E8BNAjD63gdxNEXE=,tag:0UJn4saAeQBE+aiAcN3idA==,type:str]
   encrypted_suffix: Key
   version: 3.10.2
