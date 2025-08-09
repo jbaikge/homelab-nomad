@@ -41,6 +41,7 @@ resource "nomad_job" "copyparty" {
       access_mode     = local.copyparty.access_mode
       attachment_mode = local.copyparty.attachment_mode
       fs_type         = local.copyparty.fs_type
+      config          = file("${path.module}/config/copyparty.conf")
     }
   }
 
