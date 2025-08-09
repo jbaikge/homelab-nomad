@@ -20,10 +20,10 @@ job "democratic-csi-iscsi-node" {
       driver = "docker"
 
       config {
-        image      = "democraticcsi/democratic-csi:next"
-        privileged = true
-        # network_mode = "host"
-        ipc_mode = "host"
+        image        = "democraticcsi/democratic-csi:next"
+        privileged   = true
+        network_mode = "host"
+        ipc_mode     = "host"
 
         args = [
           "--csi-version=1.9.0",
