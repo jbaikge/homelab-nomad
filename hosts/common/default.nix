@@ -69,6 +69,7 @@
   services = {
     openiscsi = {
       enable = true;
+      # TODO rename this to something more sane
       name = "iqn.2025-08.net.tdude:${config.networking.hostName}";
     };
     openssh = {
