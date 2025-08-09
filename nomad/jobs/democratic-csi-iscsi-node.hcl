@@ -19,6 +19,12 @@ job "democratic-csi-iscsi-node" {
     task "node" {
       driver = "docker"
 
+      env {
+        # FS detection system - necessary because the volumes are getting
+        # zero'd out every time they are mounted.
+        FILESYSTEM_TYPE_DETECTION_STRATEGY = "blkid"
+      }
+
       config {
         image        = "democraticcsi/democratic-csi:next"
         privileged   = true
