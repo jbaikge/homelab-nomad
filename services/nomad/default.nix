@@ -62,6 +62,8 @@
       consul = {
         address = "127.0.0.1:8500";
         grpc_address = "127.0.0.1:8502";
+        # address = "{{ GetPrivateInterfaces | include \"network\" \"10.100.6.0/24\" | attr \"address\" }}:8500";
+        # grpc_address = "{{ GetPrivateInterfaces | include \"network\" \"10.100.6.0/24\" | attr \"address\" }}:8502";
 
         server_service_name = "nomad-server";
         client_service_name = "nomad-client";
