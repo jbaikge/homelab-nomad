@@ -26,10 +26,16 @@ job "democratic-csi-iscsi-node" {
       }
 
       config {
-        image        = "democraticcsi/democratic-csi:next"
-        privileged   = true
+        image = "democraticcsi/democratic-csi:next"
+
+        # Necessary to mount drives
+        privileged = true
+
+        # Necessary to access iscsid with iscsiadm commands
         network_mode = "host"
-        ipc_mode     = "host"
+
+        # Necessary, possibly.
+        ipc_mode = "host"
 
         args = [
           "--csi-version=1.9.0",
