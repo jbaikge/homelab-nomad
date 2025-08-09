@@ -10,8 +10,6 @@ job "traefik" {
   }
 
   group "traefik" {
-    # count = 1
-
     network {
       port "http" {
         static = 80
@@ -27,7 +25,6 @@ job "traefik" {
     }
 
     service {
-      # provider = "nomad"
       name = "traefik"
       port = "https"
       tags = [
@@ -51,7 +48,6 @@ job "traefik" {
 
       config {
         image = "traefik:3"
-        # network_mode = "host"
 
         args = [
           "--accesslog=true",
