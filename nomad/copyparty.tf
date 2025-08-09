@@ -5,6 +5,7 @@ locals {
     access_mode     = "single-node-writer"
     attachment_mode = "file-system"
     fs_type         = "ext4"
+    size            = "8GiB"
   }
 }
 
@@ -12,8 +13,8 @@ resource "nomad_csi_volume" "copyparty" {
   plugin_id    = local.csi_plugin
   volume_id    = local.copyparty.volume_id
   name         = local.copyparty.name
-  capacity_min = "8GiB"
-  capacity_max = "8GiB"
+  capacity_min = local.copyparty.size
+  capacity_max = local.copyparty.size
 
   capability {
     access_mode     = local.copyparty.access_mode
