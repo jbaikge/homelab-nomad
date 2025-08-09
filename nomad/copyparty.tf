@@ -7,6 +7,7 @@ locals {
     fs_type         = "ext4"
   }
 }
+
 resource "nomad_csi_volume" "copyparty" {
   plugin_id    = local.csi_plugin
   volume_id    = local.copyparty.volume_id
