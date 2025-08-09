@@ -61,3 +61,4 @@ $ for HOST in cherry hickory maple; do nixos-rebuild switch --flake ".#${HOST}" 
 - [Set Up Load Balancing with Traefik](https://developer.hashicorp.com/nomad/tutorials/load-balancing/load-balancing-traefik)
 - [stut/nixos-nomad](https://github.com/stut/nixos-nomad)
 - [Using Traefik on Nomad](https://atodorov.me/2021/03/27/using-traefik-on-nomad/)
+- [toboshii/home-ops](https://github.com/toboshii/home-ops)
