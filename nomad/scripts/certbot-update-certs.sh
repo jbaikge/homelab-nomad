@@ -2,6 +2,7 @@
 
 set -e
 
+
 if [ -z "$DOMAIN" ]; then
     echo DOMAIN environment variable not set
     exit 1
@@ -18,13 +19,30 @@ if [ -z "$NOMAD_ADDR" ]; then
 fi
 
 LIVE_PATH=/etc/letsencrypt/live
-KEY=$(cat "$LIVE_PATH/$DOMAIN/privkey.pem")
-CERTIFICATE=$(cat "$LIVE_PATH/$DOMAIN/fullchain.pem")
+DOMAIN_PATH="$LIVE_PATH/$DOMAIN"
+KEY_PATH="$DOMAIN_PATH/privkey.pem"
+CERTIFICATE_PATH="$DOMAIN_PATH/fullchain.pem"
 
-echo "Updating certificates in Nomad variables"
+if [ ! -d "$DOMAIN_PATH" ]; then
+    echo $DOMAIN_PATH does not exist
+    exit 1
+fi
+
+if [ ! -f "$KEY_PATH" ]; then
+    echo $KEY_PATH does not exist
+    exit 1
+fi
+
+if [ ! -f "$CERTIFICATE_PATH" ]; then
+    echo $CERTIFICATE_PATH does not exist
+    exit 1
+fi
+
+KEY=$(cat "$KEY_PATH")
+CERTIFICATE=$(cat "$CERTIFICATE_PATH")
 
 nomad var put -force certs/$DOMAIN \
     CERT_KEY="$KEY" \
     CERT_CERTIFICATE="$CERTIFICATE"
 
-echo "Updated"
+echo Updated $DOMAIN certificates
