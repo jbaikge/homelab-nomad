@@ -76,13 +76,20 @@ job "certbot" {
       config {
         image = "certbot/dns-route53:v4.2.0"
 
-        args = [
-          "certonly",
+        entrypoint = [
+          "sh",
+          "/usr/local/bin/entrypoint.sh",
         ]
 
         extra_hosts = [
           "host.docker.internal:host-gateway",
         ]
+
+        mount {
+          type   = "bind"
+          source = "local/entrypoint.sh"
+          target = "/usr/local/bin/entrypoint.sh"
+        }
 
         mount {
           type   = "bind"
@@ -100,6 +107,11 @@ job "certbot" {
       template {
         destination = "secrets/file.env"
         data        = var.secret_env_vars
+      }
+
+      template {
+        destination = "local/entrypoint.sh"
+        data        = var.entrypoint_script
       }
 
       template {
