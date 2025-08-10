@@ -12,7 +12,7 @@ locals {
 }
 
 data "sops_file" "certbot" {
-  source_file = "${path.module}/config/certbot.yaml"
+  source_file = "${path.module}/config/certbot.yml"
 }
 
 resource "nomad_csi_volume" "certs" {

@@ -1,5 +1,5 @@
 data "sops_file" "aws" {
-  source_file = "${path.module}/config/aws.yaml"
+  source_file = "${path.module}/config/aws.yml"
 }
 
 resource "nomad_variable" "aws_credentials" {
