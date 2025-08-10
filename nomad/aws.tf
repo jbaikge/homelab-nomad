@@ -10,4 +10,3 @@ resource "nomad_variable" "aws_credentials" {
     "SECRET_ACCESS_KEY" = data.sops_file.aws.data["secret_access_key"]
   }
 }
-
