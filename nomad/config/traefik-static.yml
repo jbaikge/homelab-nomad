@@ -1,0 +1,41 @@
+accessLog: {}
+
+api:
+  dashboard: true
+  insecure: true
+
+entryPoints:
+  web:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+          permanent: true
+  websecure:
+    address: :443
+    http:
+      tls: true
+
+log:
+  # TRACE, DEBUG, INFO, WARN, ERROR, FATAL, PANIC
+  level: DEBUG
+
+metrics:
+  prometheus:
+    entryPoint: traefik
+    manualrouting: true
+
+ping:
+  entryPoint: traefik
+
+providers:
+  file:
+    directory: /etc/traefik/dynamic
+  consulCatalog:
+    defaultRule: Host(`{{ normalize .Name }}.${domain}`)
+    exposedByDefault: false
+    prefix: traefik
+    endpoint:
+      address: http://172.17.0.1:8500
