@@ -27,13 +27,15 @@ fi
 
 chmod +x $DEPLOY_HOOK_PATH
 
-if [ -d "$LIVE_PATH/$DOMAIN" ]; then
+if [ ! -d "$LIVE_PATH/$DOMAIN" ]; then
     echo Issuing new certificate
 
     certbot \
+        -vvv \
         --non-interactive \
         --agree-tos \
         --email "$EMAIL" \
+        --dns-route53 \
         --preferred-challenges dns \
         --domain "$DOMAIN" \
         --domain "*.$DOMAIN" \
