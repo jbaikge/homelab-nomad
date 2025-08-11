@@ -8,15 +8,15 @@ if [ -z "$DOMAIN" ]; then
     exit 1
 fi
 
-if [ -z "$NOMAD_TOKEN" ]; then
-    echo NOMAD_TOKEN environment variable not set
-    exit 1
-fi
+# if [ -z "$NOMAD_TOKEN" ]; then
+#     echo NOMAD_TOKEN environment variable not set
+#     exit 1
+# fi
 
-if [ -z "$NOMAD_ADDR" ]; then
-    echo NOMAD_ADDR environment variable not set
-    exit 1
-fi
+# if [ -z "$NOMAD_ADDR" ]; then
+#     echo NOMAD_ADDR environment variable not set
+#     exit 1
+# fi
 
 LIVE_PATH=/etc/letsencrypt/live
 DOMAIN_PATH="$LIVE_PATH/$DOMAIN"
@@ -41,8 +41,8 @@ fi
 KEY=$(cat "$KEY_PATH")
 CERTIFICATE=$(cat "$CERTIFICATE_PATH")
 
-nomad var put -force certs/$DOMAIN \
-    CERT_KEY="$KEY" \
-    CERT_CERTIFICATE="$CERTIFICATE"
+nomad var put -force certs/traefik \
+    KEY="$KEY" \
+    CERTIFICATE="$CERTIFICATE"
 
 echo Updated $DOMAIN certificates

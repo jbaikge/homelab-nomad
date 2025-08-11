@@ -40,38 +40,38 @@ resource "nomad_csi_volume" "certs" {
   ]
 }
 
-resource "nomad_acl_policy" "certs_certbot" {
-  name        = "certs-certbot"
-  description = "Write permissions to store the certificate from certbot"
-  rules_hcl   = file("${path.module}/policies/certs-certbot.hcl")
-}
+# resource "nomad_acl_policy" "certs_certbot" {
+#   name        = "certs-certbot"
+#   description = "Write permissions to store the certificate from certbot"
+#   rules_hcl   = file("${path.module}/policies/certs-certbot.hcl")
+# }
 
-resource "nomad_acl_policy" "certs_user" {
-  name        = "certs-user"
-  description = "Read permissions to get the certificate from certbot"
-  rules_hcl   = file("${path.module}/policies/certs-user.hcl")
-}
+# resource "nomad_acl_policy" "certs_user" {
+#   name        = "certs-user"
+#   description = "Read permissions to get the certificate from certbot"
+#   rules_hcl   = file("${path.module}/policies/certs-user.hcl")
+# }
 
-resource "nomad_acl_token" "letsencrypt" {
-  name = "LetsEncrypt (certbot)"
-  type = "client"
+# resource "nomad_acl_token" "letsencrypt" {
+#   name = "LetsEncrypt (certbot)"
+#   type = "client"
 
-  policies = [
-    "certs-certbot"
-  ]
+#   policies = [
+#     "certs-certbot"
+#   ]
 
-  depends_on = [
-    nomad_acl_policy.certs_certbot,
-  ]
-}
+#   depends_on = [
+#     nomad_acl_policy.certs_certbot,
+#   ]
+# }
 
-resource "nomad_variable" "certbot_token" {
-  path = "nomad/jobs/certbot"
+# resource "nomad_variable" "certbot_token" {
+#   path = "nomad/jobs/certbot"
 
-  items = {
-    "NOMAD_TOKEN" = nomad_acl_token.letsencrypt.secret_id
-  }
-}
+#   items = {
+#     "NOMAD_TOKEN" = nomad_acl_token.letsencrypt.secret_id
+#   }
+# }
 
 resource "nomad_job" "certbot" {
   jobspec = file("${path.module}/jobs/certbot.hcl")
@@ -91,9 +91,9 @@ resource "nomad_job" "certbot" {
   }
 
   depends_on = [
-    nomad_acl_policy.certs_certbot,
+    # nomad_acl_policy.certs_certbot,
     nomad_csi_volume.certs,
-    nomad_variable.certbot_token,
+    # nomad_variable.certbot_token,
     nomad_variable.aws_credentials,
   ]
 }

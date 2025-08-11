@@ -107,16 +107,19 @@ job "certbot" {
       template {
         destination = "secrets/file.env"
         data        = var.secret_env_vars
+        env         = true
       }
 
       template {
         destination = "local/entrypoint.sh"
         data        = var.entrypoint_script
+        perms       = 0755
       }
 
       template {
         destination = "local/renewal-hooks/deploy/update-certs.sh"
         data        = var.update_certs_script
+        perms       = 0755
       }
 
       volume_mount {
