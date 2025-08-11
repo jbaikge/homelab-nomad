@@ -25,8 +25,6 @@ if [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
     exit 1
 fi
 
-chmod +x $DEPLOY_HOOK_PATH
-
 if [ ! -d "$LIVE_PATH/$DOMAIN" ]; then
     echo Issuing new certificate
 
