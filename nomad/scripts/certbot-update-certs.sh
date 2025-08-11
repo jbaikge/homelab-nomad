@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e
+set -ex
 
 
 if [ -z "$DOMAIN" ]; then
@@ -13,10 +13,10 @@ fi
 #     exit 1
 # fi
 
-# if [ -z "$NOMAD_ADDR" ]; then
-#     echo NOMAD_ADDR environment variable not set
-#     exit 1
-# fi
+if [ -z "$NOMAD_ADDR" ]; then
+    echo NOMAD_ADDR environment variable not set
+    exit 1
+fi
 
 LIVE_PATH=/etc/letsencrypt/live
 DOMAIN_PATH="$LIVE_PATH/$DOMAIN"
@@ -28,12 +28,12 @@ if [ ! -d "$DOMAIN_PATH" ]; then
     exit 1
 fi
 
-if [ ! -f "$KEY_PATH" ]; then
+if [ ! -e "$KEY_PATH" ]; then
     echo $KEY_PATH does not exist
     exit 1
 fi
 
-if [ ! -f "$CERTIFICATE_PATH" ]; then
+if [ ! -e "$CERTIFICATE_PATH" ]; then
     echo $CERTIFICATE_PATH does not exist
     exit 1
 fi
@@ -41,7 +41,8 @@ fi
 KEY=$(cat "$KEY_PATH")
 CERTIFICATE=$(cat "$CERTIFICATE_PATH")
 
-nomad var put -force certs/traefik \
+chroot /host /run/current-system/sw/bin/nomad \
+    var put -force certs/traefik \
     KEY="$KEY" \
     CERTIFICATE="$CERTIFICATE"
 
