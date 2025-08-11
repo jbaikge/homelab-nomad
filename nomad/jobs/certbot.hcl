@@ -86,6 +86,13 @@ job "certbot" {
         ]
 
         mount {
+          type     = "bind"
+          target   = "/host"
+          source   = "/"
+          readonly = true
+        }
+
+        mount {
           type   = "bind"
           source = "local/entrypoint.sh"
           target = "/usr/local/bin/entrypoint.sh"
@@ -101,7 +108,7 @@ job "certbot" {
       env {
         DOMAIN     = var.domain
         EMAIL      = var.email
-        NOMAD_ADDR = "http://host.docker.internal:4646"
+        NOMAD_ADDR = "http://172.17.0.1:4646" # Docker router
       }
 
       template {
